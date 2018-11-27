@@ -19,10 +19,10 @@ Gem::Specification.new do |s|
   s.add_dependency "vidibus-service", '>= 0.3.0'
 
   s.add_development_dependency "bundler", ">= 1.0.0"
-  s.add_development_dependency "rake", ">= 0"
-  s.add_development_dependency "rspec", ">= 0"
-  s.add_development_dependency "rack-test", ">= 0"
-  s.add_development_dependency "rr", ">= 0"
+  s.add_development_dependency "rake"
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "rack-test"
+  s.add_development_dependency "simplecov"
 
   s.files = `git ls-files`.split("\n")
   s.executables = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact

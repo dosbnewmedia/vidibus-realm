@@ -13,7 +13,7 @@ describe "Vidibus::Realm::Rack" do
 
   def downstream_app
     @downstream_app ||= OpenStruct.new.tap do |a|
-      stub(a).call.with_any_args {[200,{"Content-Type" => "text/html"},[]]}
+      allow(a).to receive(:call) {[200,{"Content-Type" => "text/html"},[]]}
     end
   end
 
@@ -38,19 +38,19 @@ describe "Vidibus::Realm::Rack" do
 
   context 'if Service has not been set up' do
     it 'should raise an error' do
-      stub(Service).this { raise(Vidibus::Service::ConfigurationError) }
+      allow(Service).to receive(:this) { raise(Vidibus::Service::ConfigurationError) }
       expect { get 'http://hello.else.local' }.
         to raise_error(Vidibus::Realm::ServiceError)
     end
 
     it 'should not raise an error for connector requests' do
-      stub(Service).this { raise(Vidibus::Service::ConfigurationError) }
+      allow(Service).to receive(:this) { raise(Vidibus::Service::ConfigurationError) }
       expect { get 'http://hello.else.local/connector' }.
         not_to raise_error
     end
 
     it 'should not raise an error for connector requests with args' do
-      stub(Service).this { raise(Vidibus::Service::ConfigurationError) }
+      allow(Service).to receive(:this) { raise(Vidibus::Service::ConfigurationError) }
       expect { get 'http://hello.else.local/connector?uuid=124' }.
         not_to raise_error
     end

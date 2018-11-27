@@ -1,10 +1,12 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
+require "simplecov"
+SimpleCov.start
 
 require "rubygems"
 require "rspec"
 require "rack/test"
-require "rr"
+# require "rr"
 # require "webmock/rspec"
 
 require "vidibus-realm"
@@ -18,7 +20,7 @@ require "vidibus-realm"
 
 RSpec.configure do |config|
   # config.include WebMock
-  config.mock_with :rr
+  # config.mock_with :rr
   # config.before(:each) do
   #   Mongoid.master.collections.select {|c| c.name !~ /system/}.each(&:drop)
   # end
