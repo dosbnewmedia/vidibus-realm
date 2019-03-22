@@ -27,7 +27,7 @@ module Vidibus
       def subdomain
         puts "subdomain triggered..."
         puts "Server Name: #{env["SERVER_NAME"]}"
-        puts "Service domain: ::Service.this.domain"
+        puts "Service domain: #{::Service.this.domain}"
         env["SERVER_NAME"].match(/(.+)\.#{::Service.this.domain}/)
         $1
       rescue Vidibus::Service::ConfigurationError
