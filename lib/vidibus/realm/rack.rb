@@ -26,6 +26,8 @@ module Vidibus
       # identifying the current realm.
       def subdomain
         puts "subdomain triggered..."
+        puts "env: #{env.inspect}"
+        puts "Server Name: #{env["SERVER_NAME"]}"
         env["SERVER_NAME"].match(/(.+)\.#{::Service.this.domain}/)
         $1
       rescue Vidibus::Service::ConfigurationError
