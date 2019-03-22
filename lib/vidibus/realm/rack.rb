@@ -11,6 +11,7 @@ module Vidibus
 
       def call(env)
         puts "call triggered..."
+        puts "env: #{env.inspect}"
         @env = env
         env[:realm] = realm
         app.call(env)
