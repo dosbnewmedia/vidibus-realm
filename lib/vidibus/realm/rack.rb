@@ -22,6 +22,7 @@ module Vidibus
       # contain several subdomains as well which are not suitable for
       # identifying the current realm.
       def subdomain
+        puts "subdomain triggered..."
         env["SERVER_NAME"].match(/(.+)\.#{::Service.this.domain}/)
         $1
       rescue Vidibus::Service::ConfigurationError
@@ -32,6 +33,7 @@ module Vidibus
 
       # Returns realm from constant or subdomain.
       def realm
+        puts "realm triggered..."
         defined?(VIDIBUS_REALM) ? VIDIBUS_REALM : subdomain
       end
     end
