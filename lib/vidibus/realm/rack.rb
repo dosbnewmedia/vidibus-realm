@@ -6,14 +6,15 @@ module Vidibus
       attr_reader :app, :env
 
       def initialize(app)
+        puts "app: #{app.inspect}"
         @app = app
       end
 
       def call(env)
         puts "call triggered..."
-        puts "env: #{env.inspect}"
         @env = env
         env[:realm] = realm
+        puts "realm: #{env[:realm]}"
         app.call(env)
       end
 
