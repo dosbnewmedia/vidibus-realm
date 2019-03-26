@@ -6,15 +6,12 @@ module Vidibus
       attr_reader :app, :env
 
       def initialize(app)
-        puts "app: #{app.inspect}"
         @app = app
       end
 
       def call(env)
-        puts "call triggered..."
         @env = env
         env[:realm] = realm
-        puts "realm: #{env[:realm]}"
         app.call(env)
       end
 
@@ -25,9 +22,6 @@ module Vidibus
       # contain several subdomains as well which are not suitable for
       # identifying the current realm.
       def subdomain
-        puts "subdomain triggered..."
-        puts "Server Name: #{env["SERVER_NAME"]}"
-        puts "Service domain: #{::Service.this.domain}"
         env["SERVER_NAME"].match(/(.+)\.#{::Service.this.domain}/)
         $1
       rescue Vidibus::Service::ConfigurationError
@@ -38,7 +32,6 @@ module Vidibus
 
       # Returns realm from constant or subdomain.
       def realm
-        puts "realm triggered..."
         defined?(VIDIBUS_REALM) ? VIDIBUS_REALM : subdomain
       end
     end
