@@ -31,6 +31,11 @@ describe "Vidibus::Realm::Rack" do
     last_request.env[:realm].should eql("hello")
   end
 
+  it "sets realm by subdomain" do
+    get "http://hello-something.else.local"
+    last_request.env[:realm].should eql("hello")
+  end
+
   it "should not set realm by subdomain if hostname does not match the domain of this service" do
     get "http://hello.else.local"
     last_request.env[:realm].should be_nil
