@@ -22,7 +22,7 @@ module Vidibus
       # contain several subdomains as well which are not suitable for
       # identifying the current realm.
       def subdomain
-        env["SERVER_NAME"].match(/(.+)\.#{::Service.this.domain}/)
+        env["SERVER_NAME"].match(/(.+)[\.-]{1}#{::Service.this.domain}/)
         $1
       rescue Vidibus::Service::ConfigurationError
         unless env['PATH_INFO'] == '/connector'
